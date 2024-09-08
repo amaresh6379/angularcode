@@ -1,0 +1,14 @@
+<h1>{{name}}</h1>
+<p>{{description}}</p>
+<ng-container ngIf="actionArray && actionArray.length">
+  <div>{{actionArray[1].label}}</div>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+       <div *ngfor = "let item of actionArray;">{{item}}
+         <button mat-menu-item (click)="functionCalls($event)" > 
+          item?.label
+        </button> 
+      </div> 
+    </mat-menu>
+
+</ng-container>

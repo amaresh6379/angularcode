@@ -1,0 +1,131 @@
+<div class="container">
+    <div class="page-container">
+        <form [formGroup]="employeeRegirationForm">
+            <div fxLayout="row" fxLayoutGap="5%">
+                <div fxLayout="row" fxFlex="50%" fxLayoutAlign="start center">
+                    <mat-label fxFlex="40%">First Name</mat-label>
+                    <mat-form-field appearance="outline" fxFlex="60%">
+                        <input matInput formControlName="firstName">
+                            @if(employeeRegirationForm.get('firstName')?.hasError('required')){
+                                <mat-error> THis field is required.</mat-error>
+                            }
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlex="50%" fxLayoutAlign="center center">
+                    <mat-label fxFlex="40%">Last Name</mat-label>
+                    <mat-form-field appearance="outline" fxFlex="60%">
+                        <input matInput formControlName="lastName">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="5%" fxLayoutAlign="start center">
+                <div fxLayout="row" fxFlex="50%">
+                    <mat-label fxFlex="40%">Email</mat-label>
+                    <mat-form-field appearance="outline" fxFlex="60%">
+                        <input matInput formControlName="email">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlex="50%" fxLayoutAlign="start center">
+                    <mat-label fxFlex="40%">Alernative Email</mat-label>
+                    <mat-form-field appearance="outline" fxFlex="60%">
+                        <input matInput formControlName="alternativeEmail">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="5%" fxLayoutAlign="center center">
+                <div fxLayout="row" fxFlex="50%">
+                    <mat-label fxFlex="40%">Date of Birth</mat-label>
+                    <mat-form-field>
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dataOfBirth">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      
+                </div>
+                <div fxLayout="row" fxFlex="50%" fxLayoutAlign="start center">
+                    <mat-label fxFlex="40%">Date of Joining</mat-label>
+                    <mat-form-field>
+                        <mat-label>Choose a date</mat-label>    
+                        <input matInput [matDatepicker]="picker1" formControlName="dateOfJoining">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>                      
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="5%" fxLayoutAlign="center center">
+                <div fxLayout="row" fxFlex="50%">
+                    <mat-label fxFlex="40%">Designation</mat-label>
+                    <mat-form-field appearance="outline" fxFlex="60%">
+                        <mat-select formControlName="desgination" formControlName="desgination"> 
+                            @for(item of desigination; track item) {
+                                <mat-option [value]=item?.id >{{item?.name}}</mat-option>
+                            } 
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlex="50%" fxLayoutAlign="start center">
+                    <mat-label fxFlex="40%">Role</mat-label>
+                    <mat-form-field appearance="outline" fxFlex="60%">
+                        <mat-select formControlName="role"> 
+                            @for(item of role; track item) {
+                                <mat-option [value]=item?.id >{{item?.name}}</mat-option>
+                            } 
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div>
+                <!-- <div formArrayName="contact">
+                    @if(employeeRegirationForm.get('contact')['controls'] ){
+                        <h4 style="margin-top: 20px;">Contact</h4>
+                        @for(item of employeeRegirationForm.get('contact')['controls']; track item){
+                            <div [formGroupName]="item">
+                                <div>
+                                    <mat-icon (click)="createContact()">add</mat-icon>
+                                    <mat-icon>remove_circle_outline</mat-icon>
+                                </div>
+                                <div fxLayout="row" fxLayoutGap="5%" fxLayoutAlign="center center">
+                                    <div fxLayout="row" fxFlex="50%">
+                                        <mat-label fxFlex="40%">address</mat-label>
+                                        <mat-form-field appearance="outline" fxFlex="60%" >
+                                            <input matInput formControlName="address">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row" fxFlex="50%" fxLayoutAlign="start center">
+                                        <mat-label fxFlex="40%">city</mat-label>
+                                        <mat-form-field appearance="outline" fxFlex="60%">
+                                            <input matInput formControlName="city">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div fxLayout="row" fxLayoutGap="5%" fxLayoutAlign="center center">
+                                    <div fxLayout="row" fxFlex="50%">
+                                        <mat-label fxFlex="40%">state</mat-label>
+                                        <mat-form-field appearance="outline" fxFlex="60%" >
+                                            <input matInput formControlName="lastName">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row" fxFlex="50%" fxLayoutAlign="start center">
+                                        <mat-label fxFlex="40%">pincode</mat-label>
+                                        <mat-form-field appearance="outline" fxFlex="60%">
+                                            <input matInput formControlName="pincode">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div> -->
+
+            </div>
+            <div fxLayout="row"  fxLayoutAlign="center center" style="margin-top: 20px; margin-bottom: 20px;">
+                <button mat-raised-button (click)="formSubmit()">Submit</button>
+            </div>
+        </form>
+
+
+        <mat-label></mat-label>
+    </div>
+</div>
